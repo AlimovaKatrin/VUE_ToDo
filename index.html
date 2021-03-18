@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My first Vue app</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="app">
+    <todo-list v-bind:todos="todos"></todo-list>
+</div>
+
+<script>
+    const Todo = {
+        data () {
+            return {
+                todos: [
+                    {
+                        id: 1,
+                        name: 'Feed  cat'
+                    }, {
+                        id: 2,
+                        name: 'Dog walk'
+                    }, {
+                        id: 3,
+                        name: 'Go granny'
+                    }
+                ]
+            };
+        }
+    };
+
+    const app = Vue.createApp(Todo);
+
+    app.component('todo-list', {
+        template: `
+          <ul>
+          <todo-item
+              v-for="todo in todos"
+              v-bind:todo="todo"
+              v-bind:key="todo.id"
+          ></todo-item>
+          </ul>`,
+        props: { todos: { type: Array } }
+    });
+
+    app.component('todo-item', {
+        props: {
+            todo: { type: Object }
+        },
+        template: '<li>{{todo.name}}</li>'
+    });
+
+    app.mount('#app');
+</script>
+</body>
+</html>
