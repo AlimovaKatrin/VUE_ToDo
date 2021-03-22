@@ -1,102 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My first Vue app</title>
-    <script src="https://unpkg.com/vue@next"></script>
-</head>
-<body>
-<div id="app">
-    <todo-list v-bind:todos="todos"></todo-list>
-    <todo-form v-bind:todos="todos"></todo-form>
-</div>
+<style>
+    .card {
+        margin: auto;
+        text-align: center;
+        background: #f77171;
+    }
+</style>
+<template>
+    <div class="card">
+        <p>Поздравляю, email подтвержден!</p>
+    </div>
+</template>
 
-</body>
 <script>
-    const Todo = {
-        data () {
-            return {
-                todos: [
-                    {
-                        id: 1,
-                        name: 'Feed  cat',
-                        isDone: false
-                    }, {
-                        id: 2,
-                        name: 'Dog walk',
-                        isDone: true
-                    }, {
-                        id: 3,
-                        name: 'Go granny',
-                        isDone: false
-                    }
-                ]
-            };
-        }
-        // ,methods:{
-        //     addTask(){
-        //         this.todos.push( {
-        //             id: 4,
-        //             name: 'Go dady',
-        //             isDone: false
-        //         })
-        //     }
-        // }
+    export default {
+        name: 'confirmation-page',
     };
-
-    const app = Vue.createApp(Todo);
-
-    app.component('todo-list', {
-        template: `
-          <ul>
-          <todo-item
-              v-for="todo in todos"
-              v-bind:todo="todo"
-              v-bind:key="todo.id"
-          ></todo-item>
-          </ul>`,
-        props: { todos: { type: Array } }
-    });
-
-    app.component('todo-item', {
-        props: {
-            todo: { type: Object }
-        },
-        template: `
-          <li v-if="!todo.isDone">
-          <div>
-            {{ todo.name }}
-            <button v-on:click="todo.isDone = !todo.isDone">Done</button>
-          </div>
-          </li>
-          <li v-else>
-          <div>
-            {{ todo.name }}<strong>Task done</strong>
-          </div>
-          </li>
-        `
-    });
-
-    app.component('todo-form', {
-        data(){
-            return{
-                todo:   {
-                    id: 4,
-                    name: 'Feed  cat',
-                    isDone: false
-                }
-            }
-        },
-        props: {
-            todos: { type: Array },
-            addTask : { type: Function }
-        },
-        template: `
-          <form v-on:submit.prevent="todos.push(todo)">
-          <input v-model:todo.name="todo.name"/>
-          <button>Add</button>
-          {{todo}}
-          </form>`
-    });
-    app.mount('#app');
 </script>
-</html>
