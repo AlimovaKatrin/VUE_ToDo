@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <List list="list"/>
+    <List :list="list"/>
   </div>
 </template>
 
@@ -10,6 +10,20 @@ import List from './components/List.vue'
 
 export default {
   name: 'App',
+  data(){
+    return {
+    list:[{
+      title:'Walk granny',
+      completed: false,
+      id:0
+    }]
+    }
+  },
+  beforeCreate () {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+        .then(response => response.json())
+        .then(json => this.list = [...this.list,...json])
+  },
   components: {
     List
   }

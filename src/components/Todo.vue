@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <strong>{{ todo.title }}</strong>
+  </div>
 
 </template>
 
