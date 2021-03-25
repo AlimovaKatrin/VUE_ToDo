@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <List :list="list"/>
+    <List :list="list" :switchStatus="switchStatus"/>
   </div>
 </template>
 
@@ -17,6 +17,11 @@ export default {
       completed: false,
       id:0
     }]
+    }
+  },
+  methods:{
+    switchStatus(index){
+      this.list[index].completed = !this.list[index].completed
     }
   },
   beforeCreate () {
