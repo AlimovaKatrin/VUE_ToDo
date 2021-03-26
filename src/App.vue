@@ -5,7 +5,7 @@
       <Form v-on:addTodo="addTodo"/>
     </div>
 
-    <List :list="list" :switchStatus="switchStatus"/>
+    <List :list="list" v-on:todoClick="switchStatus"/>
   </div>
 </template>
 
@@ -25,8 +25,16 @@ export default {
     };
   },
   methods: {
-    switchStatus ( index ) {
-      this.list[index].completed = !this.list[index].completed;
+    switchStatus ( id ) {
+      let index;
+      this.list.forEach((el,i) => {
+        if(el.id === id){
+         index = i;
+        }
+      });
+      if(index >= 0){
+        this.list[index].completed = !this.list[index].completed;
+      }
     },
     addTodo ( title ) {
       const todo = {
@@ -34,7 +42,7 @@ export default {
         completed: false,
         id: this.list.length
       };
-      this.list = [todo,...this.list];
+      this.list = [ todo, ...this.list ];
     }
   },
   beforeCreate () {

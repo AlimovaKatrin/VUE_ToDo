@@ -1,4 +1,7 @@
 # vue_todo
+![sceenshot](./readme-assets/vue-todo.gif)
+
+Simple todo app, to get to know VUE framework.
 
 ## Project setup
 ```
@@ -9,16 +12,3 @@ yarn install
 ```
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

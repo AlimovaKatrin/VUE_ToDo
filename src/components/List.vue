@@ -1,22 +1,29 @@
 <template>
   <div class="container">
-      <Todo v-for="todo in list" :key="todo.id" :todo="todo" v-on:todoClick="switchStatus"/>
+      <Todo
+          v-for="todo in list"
+          :key="todo.id"
+          :todo="todo"
+          v-on:todoClick="$emit('todoClick', $event)"
+      />
+    <!--          v-on:todoClick="switchStatus"-->
+
   </div>
 </template>
 
 <script>
+
 import Todo from './Todo';
 
 export default {
   name: 'List',
   props: {
     list: Array,
-    switchStatus:Function
+    // switchStatus:Function
   },
   components: {
     Todo
   },
-
 
 };
 </script>
